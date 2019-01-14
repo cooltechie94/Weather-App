@@ -1,0 +1,54 @@
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+body{
+  background: rgba(0,0,0,1);
+  background-image:url("https://vignette.wikia.nocookie.net/steamtradingcards/images/6/66/12_Labours_of_Hercules_III_Girl_Power_Background_Zeus.jpg/revision/latest?cb=20150827224420");
+  background-size: cover;
+  width:100%;
+}
+#top-bar{
+background: rgb(0,128,225);
+  display:block;
+  width: 100%;
+  text-align:center;
+  font-size:25px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+#WeatherCard{
+  display:flex;
+  align-items:center;
+  
+  font-size: 23px;
+}
+#temp{
+ display:flex;
+  align-items:center;
+}
+#header-image{
+  display: inline;
+  width:40px;
+
+}
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin: 1rem;
+  border: 1px solid gray;
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card {
+    flex: 1 1 calc(33% - 2rem);
+  }
+}
