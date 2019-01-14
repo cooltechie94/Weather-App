@@ -3,7 +3,7 @@ $(document).ready(function()
 	var url='https://fcc-weather-api.glitch.me/api/current?lat=longitude&lon=latitude';
 	var url1="";
 	let request = new XMLHttpRequest();
-	request.open('GET',"https://fcc-weather-api.glitch.me/api/current?lat=13.008896&lon=77.6691712",true);
+	request.open('GET',url1,true);
 	const app= document.getElementById('root');
   	if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position)
