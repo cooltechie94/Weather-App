@@ -11,52 +11,18 @@ $(document).ready(function()
 	   		api+="lat="+position.coords.latitude+"&lon="+position.coords.longitude;
    		    console.log(api);
    		    getWeatherdetails(api);
-	   	/*
-		 		 api=api.replace('longitude',position.coords.latitude);
-				 api=api.replace('latitude',position.coords.longitude);
-				 console.log(api);
-				 url1=api;
-				 */
 	    });
 	 } 
 	 else 
 	 { 
 		console.log("Geolocation is not supported by this browser.");
 	 }
-	
-	console.log("API: "+api+"URL1 :"+url1);
-	const app= document.getElementById('root');
-
- });
-
-function myFunction(t) {
-			if(document.getElementById("tempUnits").innerHTML==="C")
-			{
-				//var temp1=parseFloat(t);
-				var temp1=parseInt(t);
-				console.log(typeof(temp1));
-				document.getElementById("tempUnits").innerHTML = "F";
-				temp1=(temp1*9)/5+32;
-				document.getElementById("temp").innerHTML='Temp: '+temp1+'°';
-			}
-		  	else 
-		  	{
-		  		var temp1=parseInt(t);
-		  		console.log("Fahrenheit conversion to Celsius "+temp1);
-		 	 	document.getElementById("tempUnits").innerHTML="C";
-		  		temp1=((temp1-32)*5)/9;
-		  		console.log("Fahrenheit conversion to Celsius "+temp1);
-		  	 	document.getElementById("temp").innerHTML='Temp: '+temp1+'°';
-		  	}
- }
- 
- function	getWeatherdetails(api)
+ }); 
+ function getWeatherdetails(api)
  {
  	request.open('GET',api,true);
-	console.log("URL  "+url1);
 	request.onload=function()
 	{
-		console.log("Working till here");
 		var data=JSON.parse(this.response);
 		if(request.status>=200 && request.status<400)
 		{
@@ -64,17 +30,23 @@ function myFunction(t) {
 			const logo=document.getElementById('logo');
 			let weather_icon_url=data.weather[0].icon;
 			logo.setAttribute('src',weather_icon_url);
-			logo.setAttribute('height','100px');
-			logo.setAttribute('width','100px');
-			document.getElementById("location").textContent=data.name;
-			document.getElementById("temp").textContent='Temp: '+data.main.temp+'°';
-			console.log(data.main.temp);
+			logo.setAttribute('height','120px');
+			logo.setAttribute('width','120px');
+			document.getElementById("location").textContent=data.name+','+data.sys.country;
+			let details=data.weather[0].main;
+			document.getElementById("weatherCondition").textContent=details;
+
+			let temperature=data.main.temp;
+			document.getElementById("temp").textContent='Temp: '+temperature+'°';
+			console.log(temperature);
 			var tempElem=document.getElementById("tempUnits");
+
 			tempElem.addEventListener('click',function()
-				{
-					//console.log(data.main.temp);
-					myFunction(data.main.temp)
-				});
+			{
+					temperature=myFunction(temperature);
+					document.getElementById("temp").textContent='Temp: '+temperature+'°';
+					console.log("Updated temperature is "+ temperature);
+			});
 		}
 		else
 		{
@@ -84,4 +56,27 @@ function myFunction(t) {
 		}	
 	};
 	request.send();
+ }
+ function myFunction(temp1) 
+ {
+		if(document.getElementById("tempUnits").innerHTML==="C")
+		{
+			//console.log(typeof(t));
+			//var temp1=parseInt(t);
+			console.log(typeof(temp1));
+			document.getElementById("tempUnits").innerHTML = "F";
+			temp1=(temp1*9)/5+32;
+			document.getElementById("temp").innerHTML='Temp: '+temp1+'°';
+			return temp1.toFixed(2);
+		}
+		else 
+		{
+			//var temp1=parseInt(t);
+			console.log("Fahrenheit conversion to Celsius "+temp1);
+		 	document.getElementById("tempUnits").innerHTML="C";
+			temp1=((temp1-32)*5)/9;
+			console.log("Fahrenheit conversion to Celsius "+temp1);
+		 	document.getElementById("temp").innerHTML='Temp: '+temp1+'°';
+			return temp1.toFixed(2);
+		}
  }

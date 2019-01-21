@@ -1,16 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Weather App</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
   <link href="https://fonts.googleapis.com/css?family=Dosis:400,700" rel="stylesheet">
-
   <link href="Weather App.css" type="text/css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -18,17 +14,19 @@
 	<strong>	
 	Zeus<img id="header-image" src="https://img.icons8.com/color/2x/cloudshot.png"> Weather App</header>
 	<div  id="WeatherCard">
-  	<div id="root">
+  	<div class="row" id="root">
   		<!--<p id="demo" onclick=""></p>-->
-  		<img class="details" id="logo">
-  		<div class="row">
-	  		<div class="details" id="location"></div>
-	  		<div class="row">
-		  		<div id="temperature">
-			  		<div class="details col-xs-10" id="temp"></div>
-			  		<span class="details btn btn-default col-xs-2" role="button" id="tempUnits">C</span>
-			  	</div>
-			</div>  		
+  		<img class="text-center " id="logo">
+  		<div >
+	  		<div class="details text-center" id="location"></div>
+	  		<div class="row details text-center">
+		  		<p class="details text-center" id="temperature">
+			  		<span class="details col-xs-10" id="temp"></span>
+			  		<span class="details btn btn-default col-xs-1" id="tempUnits">C</span>
+			  	</p>
+			  	
+			</div>
+			<div class="details" id="weatherCondition"></div>  		
   		</div>
   	</div>
   	</div>
